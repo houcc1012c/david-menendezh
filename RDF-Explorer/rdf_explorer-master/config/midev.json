@@ -1,0 +1,17 @@
+{
+  "server": {
+    "port": 8080,
+    "url": "http://localhost:8080"
+  },
+  "endpoints": {
+    "enabled": [
+      
+	  "dbpedia"
+    ],
+    
+	"dbpedia": {
+		"endpointQuery": "https://dbpedia.org/sparql",
+		"base": "http://dbpedia.org"
+		}
+  }
+}

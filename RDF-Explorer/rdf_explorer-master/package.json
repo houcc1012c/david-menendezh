@@ -1,0 +1,26 @@
+{
+  "name": "rdf_explorer",
+  "version": "1.0.0",
+  "description": "An RDF endpoint for docker security data.",
+  "main": "server.js",
+  "contributors": [
+    "Maximiliano Osorio <mosorio@inf.utfsm.cl>"
+  ],
+  "scripts": {
+    "start": "node server.js",
+    "devstart": "export NODE_ENV=dev; nodemon server.js --inspect"
+  },
+  "dependencies": {
+    "body-parser": "latest",
+    "config": "^3.0.1",
+    "express": "latest",
+    "js-yaml": "latest",
+    "morgan": "latest",
+    "npm": "latest",
+    "pug": "latest",
+    "request": "latest"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
