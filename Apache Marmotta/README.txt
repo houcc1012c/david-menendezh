@@ -10,3 +10,4 @@ curl -i -X POST -d @test-30.ttl -H "Content-Type: text/turtle" -H "Slug: test" h
 curl -i -H "Accept: text/turtle" http://localhost:8080/marmotta/ldp/test
 
 Los archivos probados para esta herramienta provienen de: https://www.w3.org/TeamSubmission/turtle/
+La herramienta original se encuentra en : http://marmotta.apache.org/platform/ldp-module.html
