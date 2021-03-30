@@ -1,0 +1,103 @@
+#url /api/v2
+#type api
+#base http://dbpedia.org
+#method post
+#title Wikidata REST API
+#description A RAMOSE API implementation for Wikidata
+#version 0.0.2
+#license This document is licensed with a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/legalcode), while the REST API itself has been created using [RAMOSE](https://github.com/opencitations/ramose), the *Restful API Manager Over SPARQL Endpoints* created by [Silvio Peroni](https://orcid.org/0000-0003-0530-4305), which is licensed with an [ISC license](https://opensource.org/licenses/ISC). All the data returned by this API are made freely available under a [Creative Commons public domain dedication (CC0)](https://creativecommons.org/publicdomain/zero/1.0/).
+#contacts [contact@opencitations.net](mailto:contact@opencitations.net)
+#endpoint https://dbpedia.org/sparql
+#addon test_addon
+
+#url /metadata
+#type operation
+#method get
+#description This operation retrieves the metadata for all the articles identified by the input DOIs.
+
+It is possible to specify one or more DOIs as input of this operation. In this case, the DOI should be separated with a double underscore ("\_\_") – e.g. "10.1108/jd-12-2013-0166\_\_10.1016/j.websem.2012.08.001\_\_...". The fields returned by this operation are:
+
+* *author*: the semicolon-separated list of authors of the citing entity;
+* *year*: the year of publication of the citing entity;
+* *title*: the title of the citing entity;
+* *source_title*: the title of the venue where the citing entity has been published;
+* *source_id*: the semicolon-separated list of identifiers referring to the source where the citing entity has been published;
+* *volume*: the number of the volume in which the citing entity has been published;
+* *issue*: the number of the issue in which the citing entity has been published;
+* *page*: the starting and ending pages of the citing entity in the context of the venue where it has been published;
+* *doi*: the DOI of the citing entity;
+* *reference*: the semicolon-separated DOIs of all the entities cited by the citing ;
+* *citation_count*: the number of citations received by the citing entity;
+* *qid*: the identifier of the citing entity in Wikidata.
+
+Note: this operation strictly depends on external services (i.e. doi.org and associate applications) for gathering all the metadata of the articles requested. In fact, these metadata are not stored in COCI and are retrieved dynamically upon request.
+#call /metadata
+#field_type str(qid) str(author) datetime(year) str(title) str(source_title) str(source_id) str(volume) str(issue) str(page) str(doi) str(reference) int(citation_count)
+#output_json [
+     {
+        "band": "http://dbpedia.org/resource/Love_&_the_Outcome",
+        "album": "http://dbpedia.org/resource/Love_&_the_Outcome_(album)",
+        "genre": "http://dbpedia.org/resource/Contemporary_Christian_music"
+    },
+    {
+        "band": "http://dbpedia.org/resource/Love_&_the_Outcome",
+        "album": "http://dbpedia.org/resource/Love_&_the_Outcome_(album)",
+        "genre": "http://dbpedia.org/resource/Pop_rock"
+    }
+]
+#sparql PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX dbp: <http://dbpedia.org/property/>
+PREFIX schema: <http://schema.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT ?band ?album ?genre WHERE {
+  ?band rdf:type dbo:Band .
+  ?album rdf:type schema:MusicAlbum .
+  ?band dbo:genre ?genre .
+  ?album dbp:artist ?band .
+} LIMIT 100
+
+
+#url /test
+#type operation
+#method get
+#description This operation retrieves the metadata for all the articles identified by the input DOIs.
+
+It is possible to specify one or more DOIs as input of this operation. In this case, the DOI should be separated with a double underscore ("\_\_") – e.g. "10.1108/jd-12-2013-0166\_\_10.1016/j.websem.2012.08.001\_\_...". The fields returned by this operation are:
+
+* *author*: the semicolon-separated list of authors of the citing entity;
+* *year*: the year of publication of the citing entity;
+* *title*: the title of the citing entity;
+* *source_title*: the title of the venue where the citing entity has been published;
+* *source_id*: the semicolon-separated list of identifiers referring to the source where the citing entity has been published;
+* *volume*: the number of the volume in which the citing entity has been published;
+* *issue*: the number of the issue in which the citing entity has been published;
+* *page*: the starting and ending pages of the citing entity in the context of the venue where it has been published;
+* *doi*: the DOI of the citing entity;
+* *reference*: the semicolon-separated DOIs of all the entities cited by the citing ;
+* *citation_count*: the number of citations received by the citing entity;
+* *qid*: the identifier of the citing entity in Wikidata.
+
+Note: this operation strictly depends on external services (i.e. doi.org and associate applications) for gathering all the metadata of the articles requested. In fact, these metadata are not stored in COCI and are retrieved dynamically upon request.
+#call /test
+#field_type str(qid) str(author) datetime(year) str(title) str(source_title) str(source_id) str(volume) str(issue) str(page) str(doi) str(reference) int(citation_count)
+#output_json [
+     {
+        "band": "http://dbpedia.org/resource/Love_&_the_Outcome",
+        "album": "http://dbpedia.org/resource/Love_&_the_Outcome_(album)",
+        "genre": "http://dbpedia.org/resource/Contemporary_Christian_music"
+    },
+    {
+        "band": "http://dbpedia.org/resource/Love_&_the_Outcome",
+        "album": "http://dbpedia.org/resource/Love_&_the_Outcome_(album)",
+        "genre": "http://dbpedia.org/resource/Pop_rock"
+    }
+]
+#sparql PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX dbp: <http://dbpedia.org/property/>
+PREFIX schema: <http://schema.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+SELECT distinct ?Concept where {
+[] a ?Concept
+} LIMIT 100
