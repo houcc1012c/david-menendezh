@@ -10,3 +10,5 @@ Dentro del CLI creado por Docker Desktop, dentro de la carpeta test ejecutar:
 python -m ramose -s mi_db_test.hf -c '/api/v2/metadata'
 
 Este archivo de configuración tiene otro metodo que se accede sustituyendo "metadata" por "test"
+
+La herramienta original se encuentra en: https://github.com/opencitations/ramose
