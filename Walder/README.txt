@@ -15,3 +15,7 @@ Con esta configuración se puede acceder a :
 http://localhost:3000/Jackson
 http://localhost:3000/Gaga
 
+La herramienta original se encuentra en: https://github.com/KNowledgeOnWebScale/walder
+
+La herramienta a sido comprimida por la cantidad de archivos diferentes que contiene.
+
